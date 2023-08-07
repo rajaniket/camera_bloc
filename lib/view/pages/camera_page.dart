@@ -5,7 +5,7 @@ import 'package:camera/camera.dart';
 import 'package:camera_bloc/bloc/camera_bloc.dart';
 import 'package:camera_bloc/bloc/camera_state.dart';
 import 'package:camera_bloc/enums/camera_enums.dart';
-import 'package:camera_bloc/camera_utils/screenshot_utils.dart';
+import 'package:camera_bloc/utils/screenshot_utils.dart';
 import 'package:camera_bloc/view/widgets/animated_bar.dart';
 import 'package:camera_bloc/view/pages/video_player.dart';
 import 'package:flutter/cupertino.dart';

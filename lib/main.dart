@@ -1,6 +1,6 @@
 import 'package:camera_bloc/bloc/camera_bloc.dart';
-import 'package:camera_bloc/camera_utils/camera_utils.dart';
-import 'package:camera_bloc/camera_utils/permission_utils.dart';
+import 'package:camera_bloc/utils/camera_utils.dart';
+import 'package:camera_bloc/utils/permission_utils.dart';
 import 'package:camera_bloc/view/pages/camera_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';

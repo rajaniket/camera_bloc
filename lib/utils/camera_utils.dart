@@ -1,10 +1,8 @@
 import 'dart:io';
-
 import 'package:camera/camera.dart';
 
 class CameraUtils {
   /// Returns a CameraController with the specified configuration.
-
   Future<CameraController> getCameraController({
     ResolutionPreset resolutionPreset = ResolutionPreset.high,
     required CameraLensDirection lensDirection,

@@ -5,8 +5,8 @@ import 'package:camera_bloc/bloc/camera_state.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../camera_utils/camera_utils.dart';
-import '../camera_utils/permission_utils.dart';
+import '../utils/camera_utils.dart';
+import '../utils/permission_utils.dart';
 import '../enums/camera_enums.dart';
 part 'camera_event.dart';
 
