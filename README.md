@@ -1,6 +1,6 @@
-# 🎬 Flutter Video Recorder App 🚀
+# 🎬 Flutter Short Video Recorder App 🚀
 
-Welcome to the Flutter short Video Recorder App repository! This project brings the exciting world of short video recording, similar to popular platforms like TikTok and Instagram, right into your Flutter app.
+Welcome to the short Video Recorder App repository! developed using Flutter with Bloc pattern.
 
 ![camera_image](https://github.com/rajaniket/camera_bloc/assets/40004815/f05ebee9-e874-41d4-b32a-8e9e343de012)
 
@@ -24,7 +24,7 @@ For a detailed explanation of the implementation refer to this [Medium article](
 
 ## Quick Links
 
-- Follow me for more Flutter goodness on [Linkedin]([https://twitter.com/calmaniket]), [Twitter](https://twitter.com/calmaniket) and  [Instagram]([https://your-instagram-link](https://www.instagram.com/rajaniket19/)).
+- Follow me for more Flutter goodness on [Linkedin](https://www.linkedin.com/in/aniketraj19/), [Twitter](https://twitter.com/calmaniket) and [Instagram](https://www.instagram.com/rajaniket19/).
 
 ## Preview
 
