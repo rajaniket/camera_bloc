@@ -27,7 +27,6 @@ class CameraBloc extends Bloc<CameraEvent, CameraState> {
   CameraController? getController() => _cameraController;
   bool isInitialized() => _cameraController?.value.isInitialized ?? false;
   bool isRecording() => _cameraController?.value.isRecordingVideo ?? false;
-  bool isFrontCamera() => currentLensDirection == CameraLensDirection.front;
 
   //setters
   set setRecordDurationLimit(int val) {
@@ -59,7 +58,7 @@ class CameraBloc extends Bloc<CameraEvent, CameraState> {
     recordDurationLimit = event.recordingLimit;
     try {
       await _checkPermissionAndInitializeCamera(); // checking and asking for camera permission and initializing camera
-      emit(CameraReady(isRecordingVideo: false, isFrontCamera: isFrontCamera()));
+      emit(CameraReady(isRecordingVideo: false));
     } catch (e) {
       emit(CameraError(error: e == CameraErrorType.permission ? CameraErrorType.permission : CameraErrorType.other));
     }
@@ -69,18 +68,18 @@ class CameraBloc extends Bloc<CameraEvent, CameraState> {
   void _onCameraSwitch(CameraSwitch event, Emitter<CameraState> emit) async {
     emit(CameraInitial());
     await _switchCamera();
-    emit(CameraReady(isRecordingVideo: false, isFrontCamera: isFrontCamera()));
+    emit(CameraReady(isRecordingVideo: false));
   }
 
   // Handle CameraRecordingStart event
   void _onCameraRecordingStart(CameraRecordingStart event, Emitter<CameraState> emit) async {
     if (!isRecording()) {
       try {
-        emit(CameraReady(isRecordingVideo: true, isFrontCamera: isFrontCamera()));
+        emit(CameraReady(isRecordingVideo: true));
         await _startRecording();
       } catch (e) {
         await _reInitialize();
-        emit(CameraReady(isRecordingVideo: false, isFrontCamera: isFrontCamera()));
+        emit(CameraReady(isRecordingVideo: false));
       }
     }
   }
@@ -91,21 +90,20 @@ class CameraBloc extends Bloc<CameraEvent, CameraState> {
       // Check if the recorded video duration is less than 3 seconds to prevent
       // potential issues with very short videos resulting in corrupt files.
       bool hasRecordingLimitError = recordingDuration.value < 2 ? true : false;
-      emit(CameraReady(
-          isRecordingVideo: false, isFrontCamera: isFrontCamera(), hasRecordingError: hasRecordingLimitError, decativateRecordButton: true));
+      emit(CameraReady(isRecordingVideo: false, hasRecordingError: hasRecordingLimitError, decativateRecordButton: true));
       File? videoFile;
       try {
         videoFile = await _stopRecording(); // Stop video recording and get the recorded video file
         if (hasRecordingLimitError) {
           await Future.delayed(
               const Duration(milliseconds: 1500), () {}); // To prevent rapid consecutive clicks, we introduce a debounce delay of 2 seconds,
-          emit(CameraReady(isRecordingVideo: false, isFrontCamera: isFrontCamera(), hasRecordingError: false, decativateRecordButton: false));
+          emit(CameraReady(isRecordingVideo: false, hasRecordingError: false, decativateRecordButton: false));
         } else {
           emit(CameraRecordingSuccess(file: videoFile));
         }
       } catch (e) {
         await _reInitialize(); // On Camera Exception, initialize the camera again
-        emit(CameraReady(isRecordingVideo: false, isFrontCamera: isFrontCamera()));
+        emit(CameraReady(isRecordingVideo: false));
       }
     }
   }
@@ -115,7 +113,7 @@ class CameraBloc extends Bloc<CameraEvent, CameraState> {
     if (!isInitialized() && _cameraController != null) {
       if (await permissionUtils.getCameraAndMicrophonePermissionStatus()) {
         await _initializeCamera();
-        emit(CameraReady(isRecordingVideo: false, isFrontCamera: isFrontCamera()));
+        emit(CameraReady(isRecordingVideo: false));
       } else {
         emit(CameraError(error: CameraErrorType.permission));
       }

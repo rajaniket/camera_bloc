@@ -4,8 +4,6 @@ part of 'camera_bloc.dart';
 // Abstract class representing camera-related events
 abstract class CameraEvent extends Equatable {
   const CameraEvent();
-
-  // Method to return a list of properties to compare for equality
   @override
   List<Object> get props => [];
 }
